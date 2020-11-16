@@ -8,4 +8,4 @@ set -e
 git add -A
 git commit -m 'update'
 
-git push -f git@github.com:xukaishan/x-player.git master:master
+git push -f git@github.com:xukaishan/x-player.git main:main
