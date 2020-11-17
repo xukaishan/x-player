@@ -2,9 +2,10 @@
  * @Description: 
  * @Author: xuks
  * @Date: 2020-11-16 15:06:00
- * @LastEditTime: 2020-11-16 15:09:19
+ * @LastEditTime: 2020-11-17 17:32:03
  */
-const instance = window.axios.create({
+import axios from 'axios'
+const instance = axios.create({
   timeout: 10000,
   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
 });
@@ -27,11 +28,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => {
     if (response.status === 200 || response.status === 304) {
-      if (response.data.errcode === undefined) {
-        if (!streamType(response.config)) {
-          response.data.errmsg = '请设置responseType！';
-        }
-      }
       return Promise.resolve(response);
     } else {
       return Promise.reject(response);
@@ -93,7 +89,7 @@ export async function get (url, params, options = {}) {
     url,
     params: params,
     headers: options.headers,
-    cancelToken: new window.axios.CancelToken(function executor (c) {
+    cancelToken: new axios.CancelToken(function executor (c) {
       // executor 函数接收一个 cancel 函数作为参数
       typeof options.setCancel === 'function' && options.setCancel(c);
     }),
@@ -113,7 +109,7 @@ export async function post (url, data, options = {}) {
     url,
     data: data,
     headers: options.headers,
-    cancelToken: new window.axios.CancelToken(function executor (c) {
+    cancelToken: new axios.CancelToken(function executor (c) {
       // executor 函数接收一个 cancel 函数作为参数
       typeof options.setCancel === 'function' && options.setCancel(c);
     }),
@@ -138,7 +134,7 @@ export async function upload (url, formData, options = {}) {
       typeof options.onUploadProgress === 'function' && options.onUploadProgress(progressEvent);
       // Do whatever you want with the native progress event
     },
-    cancelToken: new window.axios.CancelToken(function executor (c) {
+    cancelToken: new axios.CancelToken(function executor (c) {
       // executor 函数接收一个 cancel 函数作为参数
       typeof options.setCancel === 'function' && options.setCancel(c);
     }),

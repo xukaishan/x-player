@@ -1,62 +1,43 @@
 <template>
-  <a-layout>
-    <a-layout-sider
-      class="a-sider-layout"
-      width="50px"
-    >
-      123
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header class="a-header-layout"><CloseOutlined /></a-layout-header>
-      <a-layout-content class="a-content-layout">
-        <div
-          class="content"
-        >
-          12312313
-        </div>
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+  <div class="home">
+    <a-tabs @change="tabChange">
+      <a-tab-pane key="0" tab="新歌">
+        Content of Tab Pane 1
+      </a-tab-pane>
+      <a-tab-pane key="1" tab="热歌" force-render>
+        Content of Tab Pane 2
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="流行歌曲">
+        Content of Tab Pane 3
+      </a-tab-pane>
+    </a-tabs>
+  </div>
 </template>
+
 <script>
-
-
-export default {
-  data () {
+import apis from './proxy'
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'Home',
+  setup () {
+    apis.getNewSongs({}, (opt) => {
+      // opt.url = 'https://spinsha.re/api/songs/new/2'
+    }).then(res => {
+      console.log('res=>', res);
+    })
+    console.log('apis=>', apis);
+    const tabChange = (key) => {
+      console.log('key=>', key);
+    }
     return {
-      selectedKeys: ['4'],
-    };
+      tabChange
+    }
   },
-};
+})
 </script>
 
-<style lang='less'>
-.a-sider-layout {
-  overflow: 'auto';
-  height: '100vh';
-  position: 'fixed';
-  left: 0;
-  top: 0;
-  background: '#333333';
-}
-.a-header-layout{
-  background: '#333333';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  padding-left: 50px;
-  height: 50px;
-}
-.a-content-layout{
-  margin-top: 50px;
-  padding: 0 20px;
-  min-height: calc(100vh - 50px);
-  .content{
-    height: 1200px;
-  }
-}
-.div {
-  height: 1200px !important;
+<style scoped lang='less'>
+.home{
+
 }
 </style>

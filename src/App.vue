@@ -1,15 +1,10 @@
 <template>
-  <Home />
+  <router-view></router-view>
 </template>
 
 <script>
-import Home from './components/Home.vue'
-
 export default {
   name: 'App',
-  components: {
-    Home
-  }
 }
 </script>
 
@@ -19,7 +14,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #f1f1f1;
+  color: #8C8C8C;
   font-size: 14px; 
 } 
 .bg {

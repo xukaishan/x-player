@@ -26,7 +26,7 @@ const name = 'test-demo'
 const port = process.env.port || process.env.npm_config_port || 9527 // dev port
 
 process.env.VUE_APP_BUILD_TIME = getDateTime();
-process.env.VUE_APP_BASE_DOMAIN = process.env.NODE_ENV === 'production' ? '/' : 'http://java.dev.anoah.com/';
+process.env.VUE_APP_BASE_DOMAIN = process.env.NODE_ENV === 'production' ? '/' : '/';
 process.env.VUE_APP_MIN_STR = process.env.NODE_ENV === 'production' ? '.min' : ''; // dev与prod环境切换引用压缩资源
 process.env.VUE_APP_VERSION = require('./package.json').version + '_' + getDateTime();
 
@@ -44,6 +44,11 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development', // 保存时进行lint检查
   productionSourceMap: false,
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true
+    }
+  },
   devServer: {
     port: port,
     open: true,
