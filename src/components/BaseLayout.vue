@@ -162,9 +162,6 @@ export default defineComponent({
     padding-left: 50px;
     min-height: calc(100vh - 50px);
     background: #1e1e1e;
-    /deep/ .content {
-      height: 1200px;
-    }
   }
 }
 </style>

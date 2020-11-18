@@ -40,9 +40,12 @@ small {
     font-size: 12px;
 }
 
+div,
+p,
 ul,
 ol {
     list-style: none;
+    margin-bottom: 0;
 }
 
 a {
