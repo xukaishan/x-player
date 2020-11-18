@@ -51,7 +51,7 @@ export default defineComponent({
     let state = reactive({
       loading: false, // 加载中
       pageNo: 0,
-      songList: [1]
+      songList: []
     });
 
     const getSongs = (pageNo = state.pageNo, type = 'new') => {
