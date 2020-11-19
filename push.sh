@@ -4,13 +4,13 @@
 set -e
 
 if [[ -z $1 ]]; then
-  echo "Enter new version: "
-  read -r VERSION
+  echo "Enter commit message: "
+  read -r msg
 else
-  VERSION=$1
+  msg=$1
 fi
 
 git add -A
-git commit -m "update:$VERSION"
+git commit -m "update: $msg"
 
 git push -f git@github.com:xukaishan/x-player.git main:main
