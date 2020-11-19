@@ -10,7 +10,8 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "packager": "electron-packager . x-player --out x-player-app --arch=x64 --overwrite --ignore=node_modules"
+    "packager": "electron-packager . x-player --out x-player-app --arch=x64 --overwrite --ignore=node_modules",
+    "push": "bash push.sh"
   },
   "main": "background.js",
   "dependencies": {
