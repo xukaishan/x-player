@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: xuks
  * @Date: 2020-11-16 15:01:27
- * @LastEditTime: 2020-11-17 17:20:41
+ * @LastEditTime: 2020-11-23 16:41:14
  */
 import instance, { get, post, upload } from './_axios';
 import qs from 'qs';
@@ -34,23 +34,17 @@ const createApis = (opts = {}, appDomain = '') => {
     let opt = {}
     if (val.method.toUpperCase() === 'GET') {
       obj[key] = (data, fn) => {
-        if (typeof fn === 'function') {
-          opt = fn(params)
-        }
+        typeof fn === 'function' && (opt = fn(params))
         return _get(Object.assign(params, opt || {}, { data }))
       }
     } else if (val.method.toUpperCase() === 'POST') {
       obj[key] = (data, fn) => {
-        if (typeof fn === 'function') {
-          opt = fn(params)
-        }
+        typeof fn === 'function' && (opt = fn(params))
         return _post(Object.assign(params, opt || {}, { data }))
       }
     } else if (val.method.toUpperCase() === 'UPLOAD') {
       obj[key] = (formData, fn) => {
-        if (typeof fn === 'function') {
-          opt = fn(params)
-        }
+        typeof fn === 'function' && (opt = fn(params))
         return _upload(Object.assign(formData, opt || {}, { formData }))
       }
       
